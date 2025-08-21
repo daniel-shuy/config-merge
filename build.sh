@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t boxboat/config-merge . 
+docker build -t danielshuy/config-merge .

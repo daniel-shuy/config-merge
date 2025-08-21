@@ -1,18 +1,20 @@
 # Config Merge
 
-![test](https://github.com/boxboat/config-merge/workflows/test/badge.svg)
+![test](https://github.com/daniel-shuy/config-merge/workflows/test/badge.svg)
 
 Tool for merging JSON/JSON5/TOML/YAML files and performing environment variable substitution.  Runs in a Docker Container.
 
+Forked from [boxboat/config-merge](https://github.com/boxboat/config-merge).
+
 ## Usage
 
-`config-merge` is released on [DockerHub](https://hub.docker.com/r/boxboat/config-merge/).  Usage can be seen by running with the `-h` flag
+`config-merge` is released on [DockerHub](https://hub.docker.com/r/danielshuy/config-merge/).  Usage can be seen by running with the `-h` flag
 
 ```bash
-$ docker pull boxboat/config-merge
-$ docker run --rm boxboat/config-merge -h
+$ docker pull danielshuy/config-merge
+$ docker run --rm danielshuy/config-merge -h
 
-boxboat/config-merge [flags] file1 [file2] ... [fileN]
+danielshuy/config-merge [flags] file1 [file2] ... [fileN]
 -a, --array         merge|overwrite|concat   whether to merge, overwrite, or concatenate arrays.  defaults to merge
 -f, --format        json|json5|toml|yaml   whether to output json, json5, toml, or yaml.  defaults to yaml
 -h  --help          print the help message
@@ -32,7 +34,7 @@ This example considers building a Docker Compose file that can be used for produ
 docker_compose_config=$(
     docker run --rm \
     -v "$(pwd)/test/docker-compose/:/home/node/" \
-    boxboat/config-merge \
+    danielshuy/config-merge \
     local.env docker-compose.yml docker-compose-local.patch.yml docker-compose-local.yml
 )
 
@@ -53,7 +55,7 @@ Globbing is supported, but should be escaped in the `docker run` script so that 
 docker_compose_config=$(
     docker run --rm \
     -v "$(pwd)/test/docker-compose/:/home/node/" \
-    boxboat/config-merge \
+    danielshuy/config-merge \
     "*.env" docker-compose.yml "*-local*"
 )
 ```

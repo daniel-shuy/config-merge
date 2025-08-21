@@ -32,7 +32,7 @@ let obj = {}
 
 // prints the help message
 function printHelp() {
-    console.error("boxboat/config-merge [flags] file1 [file2] ... [fileN]")
+    console.error("danielshuy/config-merge [flags] file1 [file2] ... [fileN]")
     console.error("-a, --array         merge|overwrite|concat   whether to merge, overwrite, or concatenate arrays.  defaults to merge")
     console.error("-f, --format        json|json5|toml|yaml   whether to output json, json5, toml, or yaml.  defaults to yaml")
     console.error("-h  --help          print the help message")
