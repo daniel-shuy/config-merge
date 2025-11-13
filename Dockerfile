@@ -1,8 +1,18 @@
 FROM golang:alpine as build
 
+ARG TARGETPLATFORM
+
 RUN apk add --update git
 
-RUN  env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go install github.com/a8m/envsubst/cmd/envsubst@latest
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
+      export GOARCH=amd64; \
+    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+      export GOARCH=arm64; \
+    else \
+      echo "Unsupported TARGETPLATFORM: $TARGETPLATFORM"; \
+      exit 1; \
+    fi && \
+    env GOOS=linux GOARCH=$GOARCH CGO_ENABLED=0 go install github.com/a8m/envsubst/cmd/envsubst@latest
 
 
 FROM node:18-alpine
